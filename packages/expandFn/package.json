@@ -1,10 +1,12 @@
 {
-  "name": "@bemedev/new-package-name-to-change",
+  "name": "@bemedev/expandFn",
   "version": "0.0.1",
-  "description": "The package name need to be changed",
+  "description": "Expand functions with TypeScript",
   "keywords": [
-    "//TODO:",
-    "CHNAGE ALL"
+    "expandFn",
+    "expand",
+    "function",
+    "typescript"
   ],
   "author": {
     "name": "chlbri",
@@ -27,7 +29,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "//TODO: the new repository"
+    "url": "https://github.com/chlbri/ts-expandFn"
   },
   "files": [
     "lib",
