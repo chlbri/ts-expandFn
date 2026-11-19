@@ -1,6 +1,6 @@
 {
-  "name": "@bemedev/expandFn-monorepo",
-  "version": "0.0.1",
+  "name": "@bemedev/expand-fn-monorepo",
+  "version": "0.1.0",
   "private": true,
   "description": "Monorepo workspace root",
   "license": "MIT",

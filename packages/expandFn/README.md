@@ -1,6 +1,136 @@
-# Beatifull lib
+# @bemedev/expand-fn
 
-A beautifull description
+Attach properties to a function without losing its signature.
+
+<br/>
+
+## Features
+
+- Returns the original function reference, so parameters, return type and call
+  context (`this`) are preserved
+- Merges extensions into the function with `Object.assign`
+- Keeps the existing own properties and lets extensions override them on conflict
+- Types the merged extensions, or enforces an explicit signature with
+  `expandFn.typed`
+- No runtime dependency, no wrapper and no proxy
+
+<br/>
+
+## Installation
+
+```bash
+pnpm add @bemedev/expand-fn
+```
+
+```bash
+npm install @bemedev/expand-fn
+```
+
+<br/>
+
+## Usage
+
+### expandFn
+
+`expandFn(main, extensions?)` assigns `extensions` onto `main` and returns that
+**same** function: `main` is mutated.
+
+```ts
+import { expandFn } from '@bemedev/expand-fn';
+
+const add = (one: number, two: number) => one + two;
+const double = (value: number) => value * 2;
+
+const expanded = expandFn(add, { double });
+
+expanded(1, 2); // 3
+expanded.double(3); // 6
+expanded === add; // true
+```
+
+Existing own properties are kept, and an extension that uses the same key overrides
+them:
+
+```ts
+const versioned = Object.assign((one: number) => one, { version: 1 });
+const result = expandFn(versioned, { version: 2 });
+
+result.version; // 2
+```
+
+Because no wrapper is created, the call context is untouched:
+
+```ts
+const plus = function (this: { base: number }, value: number) {
+  return this.base + value;
+};
+
+expandFn(plus).call({ base: 1 }, 2); // 3
+```
+
+### expandFn.typed
+
+`expandFn.typed<T>(main)` reads the signature from `T` instead of inferring it from
+the argument. The `extension` argument is required only when `T` declares own
+properties:
+
+```ts
+type FnAddWithDouble = {
+  (one: number, two: number): number;
+  double: (value: number) => number;
+};
+
+const double = (value: number) => value * 2;
+
+const add = Object.assign((one: number, two: number) => one + two, { double });
+
+const typed = expandFn.typed<FnAddWithDouble>(add, { double });
+
+typed(1, 2); // 3
+typed.double(3); // 6
+```
+
+For a function without own properties, pass no extension:
+
+```ts
+type FnAdd = (one: number, two: number) => number;
+
+const add = (one: number, two: number) => one + two;
+const typed = expandFn.typed<FnAdd>(add);
+
+typed(1, 2); // 3
+```
+
+<br/>
+
+## API
+
+### expandFn
+
+```ts
+type ExpandFn_F = {
+  <const Main extends Fn, const Tr extends object = object>(
+    main: Main,
+    extensions?: Tr,
+  ): Main & Tr;
+
+  readonly typed: <const T extends Fn>(
+    ...args: TypedArgs<T>
+  ) => GetObject<T> & OnlyFn<T>;
+};
+```
+
+### Exported types
+
+| Type        | Description                                                    |
+| ----------- | -------------------------------------------------------------- |
+| `Fn`        | Generic function type: `(...args: Args) => R`                  |
+| `FnBasic`   | Intersection of an extension object and a function             |
+| `OnlyFn`    | Call signature of a function, without its own properties       |
+| `GetObject` | Object built from the own properties of a function type        |
+| `TypedArgs` | Arguments of `expandFn.typed`: `[main]` or `[main, extension]` |
+| `Equals`    | Compile-time equality check between two types                  |
+| `EmptyO`    | Empty object type used by `TypedArgs`                          |
 
 <br/>
 
@@ -14,7 +144,7 @@ Read [CHANGELOG.md](CHANGELOG.md) for more details about the changes.
 
 <br/>
 
-## Auteur
+## Author
 
 chlbri (bri_lvi@icloud.com)
 

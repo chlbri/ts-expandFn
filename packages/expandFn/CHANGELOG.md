@@ -3,13 +3,30 @@
 <br/>
 <br/>
 
-### Version [0.0.1] --> _date & hour_
+<details>
+<summary>
 
-- ✨ Première version de la bibliothèque
+## **[0.0.1] - 19/11/2026** => _12:00_
+
+</summary>
+
+- Add `expandFn` to merge an extension object into a function, mutating and returning
+  the same reference
+- Add `expandFn.typed` to enforce an explicit signature and type the merged
+  extensions
+- Keep existing own properties of the target function and let extensions override
+  them on conflict
+- Preserve the call context (`this`), parameters and return type
+- Export the `Fn`, `FnBasic`, `OnlyFn`, `TypedArgs`, `GetObject`, `Equals` and
+  `EmptyO` types
+- Add documentation and usage examples for both APIs
+- <u>Test coverage **_100%_**</u>
+
+</details>
 
 <br/>
 
-## Auteur
+## Author
 
 chlbri (bri_lvi@icloud.com)
 

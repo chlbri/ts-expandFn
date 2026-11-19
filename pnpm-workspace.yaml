@@ -1,36 +1,37 @@
 packages:
-  - "packages/expandFn"
-  - "packages/__tests__/project1"
+  - 'packages/expandFn'
+  - 'packages/__tests__/project1'
 
 allowBuilds:
-  "@parcel/watcher": true
+  '@parcel/watcher': true
   esbuild: true
 
 nodeLinker: hoisted
 minimumReleaseAge: 300
 
 minimumReleaseAgeExclude:
-  - "@bemedev/*"
+  - '@bemedev/*'
   - vite-plus
-  - "@voidzero-dev/*"
+  - '@voidzero-dev/*'
   - oxlint
-  - "@oxlint/*"
+  - '@oxlint/*'
   - oxlint-tsgolint
-  - "@oxlint-tsgolint/*"
+  - '@oxlint-tsgolint/*'
   - oxfmt
-  - "@oxfmt/*"
+  - '@oxfmt/*'
   - vitest
-  - "@vitest/*"
+  - '@vitest/*'
 
 catalog:
   vite: npm:@voidzero-dev/vite-plus-core@8.3.8000
   vitest: 5.1.1
   vite-plus: 1.7.0
-  "@vitest/coverage-v8": 5.1.1
+  '@vitest/coverage-v8': 5.1.1
 
 overrides:
-  vite@*: "catalog:"
-  vitest@*: "catalog:"
+  typescript: 6.0.3
+  vite@*: 'catalog:'
+  vitest@*: 'catalog:'
 
 peerDependencyRules:
   allowAny:
@@ -38,5 +39,5 @@ peerDependencyRules:
     - vitest
 
   allowedVersions:
-    vite: "*"
-    vitest: "*"
+    vite: '*'
+    vitest: '*'

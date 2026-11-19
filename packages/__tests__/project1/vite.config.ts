@@ -9,5 +9,6 @@ export default defineProject({
     maxConcurrency: 100,
     env: { NODE_ENV: 'test' },
     globals: true,
+    server: { deps: { inline: ['@bemedev/dev-utils'] } },
   },
 });

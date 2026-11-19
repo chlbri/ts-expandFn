@@ -1,4 +1,2 @@
-/** Just a simple function, */
-export default function todo() {
-  return 'todo';
-}
+export * from './expandFn';
+export type * from './types';

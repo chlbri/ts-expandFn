@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@bemedev/dev-utils": "^1.5.0",
-    "@bemedev/expandFn": "workspace:^",
+    "@bemedev/expand-fn": "workspace:^",
     "typescript": "^7.0.2",
     "vite-plus": "catalog:"
   }
