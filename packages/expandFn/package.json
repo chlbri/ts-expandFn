@@ -1,6 +1,6 @@
 {
   "name": "@bemedev/expand-fn",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Expand functions with TypeScript",
   "keywords": [
     "expandFn",
