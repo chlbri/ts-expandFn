@@ -1,0 +1,82 @@
+// Every step runs through vite-plus (vp) when the folder opens
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "pull",
+      "type": "shell",
+      "command": "git pull",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "new",
+        "clear": false,
+        "close": true
+      },
+      "hide": true,
+      "problemMatcher": [],
+      "runOptions": { "runOn": "folderOpen", "instanceLimit": 1 }
+    },
+    {
+      "label": "vp:install",
+      "type": "shell",
+      "command": "vp",
+      "args": ["install"],
+      "presentation": {
+        "echo": true,
+        "reveal": "never",
+        "focus": false,
+        "panel": "shared",
+        "clear": false,
+        "close": true
+      },
+      "detail": "Install deps with vp install",
+      "hide": true,
+      "problemMatcher": [],
+      "dependsOn": "pull",
+      "runOptions": { "runOn": "folderOpen", "instanceLimit": 1 }
+    },
+
+    {
+      "label": "vp:lint",
+      "type": "shell",
+      "command": "vp",
+      "args": ["run", "lint"],
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "new",
+        "clear": true,
+        "close": true
+      },
+      "hide": true,
+      "detail": "Format and lint with vp run lint",
+      "problemMatcher": [],
+      "dependsOn": "vp:install",
+      "runOptions": { "runOn": "folderOpen", "instanceLimit": 1 }
+    },
+
+    {
+      "label": "vp:test",
+      "type": "shell",
+      "command": "vp",
+      "args": ["test"],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "new",
+        "group": "test",
+        "clear": true,
+        "close": true
+      },
+      "group": "test",
+      "detail": "Test the package with vp test",
+      "problemMatcher": [],
+      "dependsOn": "vp:lint",
+      "runOptions": { "runOn": "folderOpen", "instanceLimit": 1 }
+    }
+  ]
+}
